@@ -52,3 +52,31 @@ to_xml() ->
         %Result = xmerl:export_simple_element({shopping, [], Items}, xmerl_xml),
 
         io:format("~s~n", [lists:flatten(Result)]).
+
+to_xml2() ->
+	Data1 = {bike, [{attr1, "22"}, {attr2, "mm"}], 
+		[
+			{engine, ["abc"]},
+			{cycle, ["lll"]}
+		]},	
+
+	Result1 = xmerl:export_simple_element(Data1, xmerl_xml),
+	io:format("~p~n", [lists:flatten(Result1)]),
+
+	Data2 = {bike,  
+		[
+			{engine, ["abc"]},
+			{cycle, ["lll"]}
+		]},	
+
+	Result2 = xmerl:export_simple_element(Data2, xmerl_xml),
+	io:format("~p~n", [lists:flatten(Result2)]),
+
+	Result3 = xmerl:export_simple_content([Data2], xmerl_xml),
+	io:format("~p~n", [lists:flatten(Result3)]),
+
+	Result4 = xmerl:export_simple([Data2], xmerl_xml),
+	io:format("~p~n", [lists:flatten(Result4)]),
+
+	ok.
+
